@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Адаптивне меню</title>
+    <style>
+      body {
+        background: url("02.jpg") no-repeat center/cover;
+        color: #d4ca37;
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+      }
+
+      header {
+        text-align: center;
+        background: url("02.jpg") no-repeat center/cover;
+        padding: 20px;
+        font-size: 20px;
+        font-weight: bold;
+        color: #d4ca37;
+        text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+        position: relative;
+      }
+
+      .logo {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 150px;
+        height: 140px;
+      }
+
+      .burger-menu {
+        display: none;
+        font-size: 30px;
+        background: none;
+        border: none;
+        color: #d4ca37;
+        cursor: pointer;
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        z-index: 1000;
+      }
+
+      .menu {
+        background: rgba(8, 11, 54, 0.9);
+        padding: 10px;
+        text-align: center;
+        font-size: 18px;
+      }
+
+      .menu ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      .menu ul li {
+        display: inline-block;
+        position: relative;
+        margin: 0 10px;
+      }
+
+      .menu ul li a {
+        color: #d4ca37;
+        text-decoration: none;
+        font-weight: bold;
+        display: block;
+        padding: 10px;
+        transition: 0.3s;
+      }
+
+      .menu ul .submenu {
+        background: url("02.jpg") no-repeat center/cover;
+        font-size: 16px;
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        border-radius: 10px;
+        padding: 0;
+        min-width: 220px;
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.3s ease, visibility 0.3s ease;
+      }
+
+      .menu ul .submenu .submenu-right {
+        position: absolute;
+        min-width: 200px;
+        top: 0;
+        left: 100%;
+        background: url("02.jpg") no-repeat center/cover;
+        font-size: 15px;
+        display: none;
+      }
+
+      .menu ul li:hover > .submenu,
+      .menu ul .dropdown-right:hover > .submenu-right {
+        display: block;
+        opacity: 1;
+        visibility: visible;
+      }
+
+      .menu ul .submenu li {
+        display: block;
+        text-align: left;
+      }
+
+      .menu ul .submenu li a {
+        padding: 10px;
+        color: #d4ca37;
+      }
+
+      @media (max-width: 480px) {
+        .burger-menu {
+          display: block;
+        }
+
+        .menu {
+          display: none;
+          flex-direction: column;
+          background: rgba(8, 11, 54, 0.95);
+          position: absolute;
+          top: 70px;
+          left: 0;
+          width: 100%;
+          z-index: 999;
+        }
+
+        .menu.active {
+          display: flex;
+        }
+
+        .menu ul {
+          flex-direction: column;
+          display: flex;
+          align-items: stretch;
+        }
+
+        .menu ul li {
+          display: block;
+          width: 100%;
+          margin: 0;
+          border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .menu ul li a {
+          display: block;
+          width: 100%;
+          text-align: left;
+          padding: 12px 20px;
+        }
+
+        .submenu {
+          display: none;
+          flex-direction: column;
+        }
+
+        .submenu.submenu-open {
+          display: flex;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <button class="burger-menu" onclick="toggleMenu()">☰</button>
+      <h1>САЙТ ВЧИТЕЛЯ ІНФОРМАТИКИ</h1>
+      <img src="logo1.jpg" alt="Логотип" class="logo" />
+    </header>
+    <nav class="menu">
+      <ul>
+        <li><a href="#">Головна</a></li>
+        <li><a href="#">Методичний порадник</a></li>
+        <li class="dropdown">
+          <a href="#">Цифрова грамотність</a>
+          <ul class="submenu">
+            <li class="dropdown-right">
+              <a href="#">Основи роботи з ПК ▶</a>
+              <ul class="submenu-right">
+                <li><a href="#">PDF</a></li>
+                <li><a href="#">Відео</a></li>
+              </ul>
+            </li>
+            <li><a href="#">Безпека</a></li>
+            <li><a href="#">Медіаграмотність</a></li>
+          </ul>
+        </li>
+        <li><a href="#">Підручники</a></li>
+        <li><a href="#">Софт</a></li>
+        <li><a href="#">Автор</a></li>
+      </ul>
+    </nav>
+    <script>
+      function toggleMenu() {
+        document.querySelector(".menu").classList.toggle("active");
+      }
+    </script>
+  </body>
+</html>
